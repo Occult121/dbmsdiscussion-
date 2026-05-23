@@ -1,0 +1,144 @@
+<html>
+<head> 
+<style> 
+#holder { display :flex; 
+flex-direction : row; 
+background-color : black; 
+flex-wrap :wrap; 
+justify-content : space-around , space-between; 
+} 
+#holder >div { background-color :white; 
+margin :9px; 
+border :9px ;} </style> 
+</head> 
+
+<body style ="background-color : LightGreen"> 
+<h1><b><marquee behavior ="scroll" direction ="up"> DBMS </marquee></b></h1><br> 
+
+<h2><nav> 
+<a href="C:\Users\Admin\Downloads\cdas.html#lossless"> loss-less join </a>| 
+<a href="C:\Users\Admin\Downloads\cdas.html#existence"> EXISTENCE DEPENDENCIES </a>| 
+<a href="C:\Users\Admin\Downloads\cdas.html#dependency"> FUNC. DEPENDENCIES </a>| 
+<a href="C:\Users\Admin\Downloads\cdas.html#normalize"> NORMALIZATION </a>| 
+<a href="C:\Users\Admin\Downloads\cdas.html#checkpt"> DATABASE RECOVERY </a>| 
+<a href="C:\Users\Admin\Downloads\cdas.html#acid"> TRANSACTIONS </a>|
+<a href="C:\Users\Admin\Downloads\cdas.html#deadlocks"> PHANTOM DEADLOCK </a> 
+</nav></h2> 
+<br><br> 
+<div id ="holder"> 
+<div> 
+<section id ="lossless"> 
+loss less join decomposition --- there are 2 rels r1 and r2 s.t for all attributes in r1 and r2 , we have <br> 
+r1   u   r2 --> r1 & r1    u   r2 ---> r2 holding good . dependency preservation occurs herein <br><br> 
+<a target="_blank" href="https://www.geeksforgeeks.org/dbms/decomposition-in-dbms/"><img src="https://media.geeksforgeeks.org/wp-content/uploads/20240225103808/Screenshot-2024-02-25-103756.png" alt ="g" width ="350" height ="350"></a> 
+<br><br> 
+</section> 
+</div> 
+
+<div> 
+<section id="existence"? 
+existence dependency <br> we have a rel. r where for all attributes in r , we have x --->y s,t  if operationally y is deleted <br> so is x<br> 
+y is dominant entity and x is subordinate entity . dependency preservation occurs herein <br><br> 
+<a target="_blank" href="https://www.analyticsvidhya.com/blog/2022/08/database-normalization-a-step-by-step-guide-with-examples/"><img src="https://editor.analyticsvidhya.com/uploads/34025Blank%20board%20(6).jpeg" alt ="g" width ="350" height ="350"></a> 
+<br><br></section></div> 
+
+<div> 
+<section id="dependency"> 
+types of functional dependency :<br><table width ="60%" border="1"> 
+<thead><tr><th> 
+Full func dependency </th><th>	Partial func dependency </th><th>	Transitive dependency</th><th>  	Multi – valued dependency </th><th> 	Join dependency</th></tr> 
+</thead> 
+
+<tbody> 
+<tr><td>  
+
+All non key attributes are fully depended on key attribute</td><td>  
+	Some non key attributes are depended on key attribute and remaining non key attributes are depended on key attribute and on some other non key attributes </td> 
+<td> 	If attributes in key col of 1 rel correspond to key attributes in col of another rel </td><td> 	In 4nf</td><td>  	In 5nf </td></tr></tbody></table> 
+</section> 
+</div> 
+
+<div> 
+<section id="normalize"> 
+the removal of data redundancy from tables or rels . is normalization . while 1nf has redundant data that is removed to some extent in 2 nf <br> 
+still higher nf is BCNF  that defines super key values . all rels in 3NF  are in BCNF  but the reverse is not always holding good . <br> 
+there ‘s a rel schema r where for all func. Dependencies f on r , can find a <-- - r and b <-- - r s.t    a ----> b is a trivial dependency in f+ , s.t at least one<br> 
+ of the following is true : <br><ol type ="a"><li> 
+a ----> b is a trivial dependency in r </li><li> 
+a is a super key to r</li></ol><br> 
+ 
+still higher nf is 3NF  that mentions candidate key values , transitive dependencies . there ‘s a rel schema r where for all func. Dependencies f on r ,<br> 
+ can find a <-- - r and b <-- - r s.t    a ---> b  is a trivial dependency in f+ , s.t at least one of the following is true : <br><ol type="1"> 
+<li> 
+a ----> b is a trivial dependency in r </li><li> 
+a is a super key to r </li><li> 
+can find extraneous attribute in [b-a], that is contained in candidate key for r </li></ol><br> 
+4nf defines multi – valued dependency<br> 
+5nf mentions join dependency <br><br> 
+</section></div> 
+
+<div> 
+<section id="checkpt"> 
+where a database is to be recovered from hd crash , we use check –pt method of log- recovery . a check –pt is a special log record ,<br> 
+ the main sequence in this recovery as follows : <br><ul type="square"><li>
+	output onto stable storage all log records residing in main memory</li><li>  
+	output all modified buffer block onto disk</li><li>  
+	output onto stable storage  a log record check pt</li></ul><br> 
+ 
+no database modifications can occur where a check –pt in progress <br> 
+we suppose that a hd crash occurs where a transaction executes , the log is consulted backwds till finds transaction – comit ,<br> 
+ log is still consulted backwds till finds check –pt ,<br> 
+ log is still consulted backwds till finds transaction –start record , that identifies transaction  . <br> 
+now undo or redo operations can be done on this transaction and any others . for concurrent transaction processing fuzzy check pt is used <br><br> 
+</section></div> 
+
+<div> 
+<section id="acid"> 
+Acid properties of a transaction :<br> 
+ a transaction is a unit of program execution  that accesses and or possibly updates various data items . acid properties of a transaction are :<br> 
+<table width ="60%" border ="1"> 
+<tr><td>  
+Atomicity : either transaction executes in entirety or none executes at all </td></tr><tr><td> 
+Consistency : state of database remains same both before and after transaction, despite system changes</td></tr> 
+<tr><td> 
+Isolation  : despite system changes , transaction executes independently of others </td></tr><tr><td> 
+Durability : any modifications made to database as a result of transaction,persist even if there are system changes</td></tr></table> 
+ 
+e.gs there ‘s a schedule involving 2 accounts a and b, initial values in   a and b accounts are $ 1000 and $ 2000 . <br> 
+A transaction occurs that transfers $ 50 from  a -b , as a result , final values in  a and b becomes $ 950 and $ 2050 , clearly a consistent state ,<br> 
+ as sum a +b is preserved both before and after the transaction . <br> 
+we now suppose that a hd crash  occur after write – a committed but before write – b committed . so, now the final values in  a and b accounts become $ 950 <br> 
+and $ 2000 , clearly a inconsistent state , as sum a +b is no longer preserved both before and after the transaction .<br> 
+ even if system failure did not occurred and transaction proceeded to completion, <br> 
+this inconsistent state would not have been visible except during occurrence of transaction.<br> 
+ This again reflects Atomicity . isolation preserved . durability preserved through recovery mgmt.. component of transactions <br><br></section> 
+</div> 
+
+
+<div > 
+<section id="deadlocks"> 
+phantom deadlock : we have 2 transactions a and b that execute individually as foll. <br> 
+INSERT INTO ACCOUNT VALUES (“RS”, “SAVINGS”, 2000); <br> 
+SELECT FROM ACCOUNT VALUES(“RS”, “SAVINGS”, 2000); <br> 
+If these 2 transactions occur separately , they execute but if made to run concurrently ,<br> 
+ effectively the schedule does not execute at all and deadlock , called  as “phantom deadlock” creeps in place <br> 
+
+Phantom deadlock can be resolved if assumed that a – lock data items in exclusive mode & b – lock data items in  shared mode <br><br> 
+</section></div> 
+</div> 
+
+
+<br><br> 
+<footer> 
+<h2><a target="_blank" href="mailTo:ratulxx@gmail.com">ratulxx@gmail.com</a> 
+</h2></footer> 
+<br></body> 
+</html> 
+
+
+
+
+
+
+
+
